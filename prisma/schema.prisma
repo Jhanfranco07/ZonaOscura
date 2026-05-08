@@ -1,0 +1,176 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Usuario {
+  id                   String                   @id @default(cuid())
+  nombres              String
+  apellidos            String?
+  correo               String                   @unique
+  claveHash            String
+  rol                  RolUsuario               @default(CIUDADANO)
+  estado               EstadoUsuario            @default(ACTIVO)
+  distrito             String?
+  fechaCreacion        DateTime                 @default(now())
+  fechaActualizacion   DateTime                 @updatedAt
+  reportesCreados      ReporteZonaOscura[]      @relation("ReportesCreados")
+  reportesAsignados    ReporteZonaOscura[]      @relation("ReportesAsignados")
+  comentarios          ComentarioReporte[]
+  confirmaciones       ConfirmacionReporte[]
+  historialEstados     HistorialEstadoReporte[]
+  informesGenerados    InformeMunicipal[]
+}
+
+model ReporteZonaOscura {
+  id                     String                    @id @default(cuid())
+  codigo                 String                    @unique
+  titulo                 String?
+  direccion              String
+  referencia             String?
+  distrito               String
+  latitud                Float
+  longitud               Float
+  tipoProblema           TipoProblema
+  nivelRiesgo            NivelRiesgo
+  descripcion            String
+  estado                 EstadoReporte             @default(PENDIENTE)
+  prioridad              NivelPrioridad            @default(BAJA)
+  ciudadanoId            String
+  ciudadano              Usuario                   @relation("ReportesCreados", fields: [ciudadanoId], references: [id])
+  funcionarioAsignadoId  String?
+  funcionarioAsignado    Usuario?                  @relation("ReportesAsignados", fields: [funcionarioAsignadoId], references: [id])
+  fechaSolucion          DateTime?
+  fechaCreacion          DateTime                  @default(now())
+  fechaActualizacion     DateTime                  @updatedAt
+  imagenes               ImagenReporte[]
+  comentarios            ComentarioReporte[]
+  confirmaciones         ConfirmacionReporte[]
+  historialEstados       HistorialEstadoReporte[]
+  intervenciones         IntervencionMunicipal[]
+}
+
+model ImagenReporte {
+  id             String             @id @default(cuid())
+  reporteId      String
+  reporte        ReporteZonaOscura  @relation(fields: [reporteId], references: [id], onDelete: Cascade)
+  urlImagen      String
+  claveStorage   String?
+  nombreArchivo  String?
+  tipoArchivo    String?
+  tamanioBytes   Int?
+  fechaCreacion  DateTime           @default(now())
+}
+
+model ComentarioReporte {
+  id              String             @id @default(cuid())
+  reporteId       String
+  usuarioId       String
+  contenido        String
+  tipoComentario  TipoComentario     @default(CIUDADANO)
+  reporte         ReporteZonaOscura  @relation(fields: [reporteId], references: [id], onDelete: Cascade)
+  usuario         Usuario            @relation(fields: [usuarioId], references: [id])
+  fechaCreacion   DateTime           @default(now())
+}
+
+model ConfirmacionReporte {
+  id             String             @id @default(cuid())
+  reporteId      String
+  usuarioId      String
+  reporte        ReporteZonaOscura  @relation(fields: [reporteId], references: [id], onDelete: Cascade)
+  usuario        Usuario            @relation(fields: [usuarioId], references: [id])
+  fechaCreacion  DateTime           @default(now())
+
+  @@unique([reporteId, usuarioId])
+}
+
+model HistorialEstadoReporte {
+  id              String             @id @default(cuid())
+  reporteId        String
+  cambiadoPorId    String
+  estadoAnterior   EstadoReporte?
+  estadoNuevo      EstadoReporte
+  nota             String?
+  reporte          ReporteZonaOscura  @relation(fields: [reporteId], references: [id], onDelete: Cascade)
+  cambiadoPor      Usuario            @relation(fields: [cambiadoPorId], references: [id])
+  fechaCreacion    DateTime           @default(now())
+}
+
+model IntervencionMunicipal {
+  id                  String             @id @default(cuid())
+  reporteId            String
+  reporte              ReporteZonaOscura  @relation(fields: [reporteId], references: [id], onDelete: Cascade)
+  tipoIntervencion      TipoIntervencion
+  descripcion           String
+  areaResponsable       String
+  responsableNombre     String?
+  fechaIntervencion     DateTime
+  fechaCreacion         DateTime           @default(now())
+}
+
+model InformeMunicipal {
+  id             String    @id @default(cuid())
+  titulo         String
+  distrito       String?
+  fechaDesde     DateTime?
+  fechaHasta     DateTime?
+  urlArchivo     String?
+  generadoPorId  String
+  generadoPor    Usuario   @relation(fields: [generadoPorId], references: [id])
+  fechaCreacion  DateTime  @default(now())
+}
+
+enum RolUsuario {
+  CIUDADANO
+  MUNICIPAL
+  ADMIN
+}
+
+enum EstadoUsuario {
+  ACTIVO
+  INACTIVO
+}
+
+enum TipoProblema {
+  LUZ_APAGADA
+  SIN_POSTE_LUZ
+  LUMINARIA_INTERMITENTE
+  ZONA_COMPLETAMENTE_OSCURA
+}
+
+enum NivelRiesgo {
+  BAJO
+  MEDIO
+  ALTO
+}
+
+enum EstadoReporte {
+  PENDIENTE
+  EN_EVALUACION
+  EN_PROCESO
+  ATENDIDO
+  RECHAZADO
+}
+
+enum NivelPrioridad {
+  BAJA
+  MEDIA
+  ALTA
+}
+
+enum TipoComentario {
+  CIUDADANO
+  MUNICIPAL
+}
+
+enum TipoIntervencion {
+  REPARACION_LUMINARIA
+  CAMBIO_FOCO_LED
+  INSTALACION_POSTE
+  INSPECCION_TECNICA
+  OTRO
+}

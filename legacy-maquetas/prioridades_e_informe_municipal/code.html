@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Prioridades e informe municipal - ZonaOscura</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#585f6a",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed": "#151c25",
+                        "surface-container": "#edeeef",
+                        "on-background": "#191c1d",
+                        "on-tertiary-container": "#818488",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#575e70",
+                        "on-primary-fixed-variant": "#404758",
+                        "outline": "#76777d",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#c0c7d3",
+                        "surface-container-low": "#f3f4f5",
+                        "primary": "#000000",
+                        "secondary-fixed": "#dce3f0",
+                        "outline-variant": "#c6c6cd",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#d9dadb",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed": "#141b2b",
+                        "tertiary-container": "#191c1f",
+                        "primary-fixed": "#dce2f7",
+                        "on-tertiary-fixed-variant": "#44474a",
+                        "inverse-primary": "#c0c6db",
+                        "inverse-surface": "#2e3132",
+                        "on-primary-container": "#7d8497",
+                        "on-surface-variant": "#45464c",
+                        "error": "#ba1a1a",
+                        "surface-bright": "#f8f9fa",
+                        "surface-container-high": "#e7e8e9",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#e0e2e6",
+                        "primary-fixed-dim": "#c0c6db",
+                        "surface-variant": "#e1e3e4",
+                        "on-secondary-fixed-variant": "#404752",
+                        "on-secondary-container": "#5e6570",
+                        "background": "#f8f9fa",
+                        "surface": "#f8f9fa",
+                        "secondary-container": "#dce3f0",
+                        "on-tertiary-fixed": "#191c1f",
+                        "primary-container": "#141b2b",
+                        "tertiary-fixed-dim": "#c4c7ca",
+                        "on-tertiary": "#ffffff",
+                        "on-surface": "#191c1d",
+                        "tertiary": "#000000",
+                        "surface-container-highest": "#e1e3e4",
+                        "inverse-on-surface": "#f0f1f2"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "8px",
+                        "xl": "32px",
+                        "lg": "24px",
+                        "xs": "4px",
+                        "md": "16px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "texto-general": ["Inter"],
+                        "subtitulo": ["Inter"],
+                        "etiqueta": ["Inter"],
+                        "titulo-principal": ["Inter"],
+                        "titulo-seccion": ["Inter"]
+                    },
+                    "fontSize": {
+                        "texto-general": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "subtitulo": ["18px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "etiqueta": ["13px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                        "titulo-principal": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "titulo-seccion": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-texto-general h-screen flex overflow-hidden">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full w-[250px] bg-surface-container-low border-r border-outline-variant flex flex-col gap-sm p-md z-20">
+<div class="mb-lg">
+<h1 class="font-titulo-seccion text-titulo-seccion font-bold text-primary">ZonaOscura</h1>
+<p class="font-texto-general text-texto-general text-on-surface-variant">Gestión de Alumbrado</p>
+</div>
+<ul class="flex flex-col gap-xs flex-1">
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-texto-general text-texto-general">Inicio</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">map</span>
+<span class="font-texto-general text-texto-general">Mapa de zonas</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="font-texto-general text-texto-general">Nuevo reporte</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="font-texto-general text-texto-general">Reportes</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-texto-general text-texto-general">Historial atendido</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">admin_panel_settings</span>
+<span class="font-texto-general text-texto-general">Panel municipal</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg bg-surface-container-highest text-primary font-semibold hover:bg-surface-container-high transition-all scale-[0.98]" href="#">
+<span class="material-symbols-outlined">priority_high</span>
+<span class="font-texto-general text-texto-general">Prioridades</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<span class="font-texto-general text-texto-general">Informes</span>
+</a>
+</li>
+</ul>
+<div class="mt-auto pt-lg border-t border-outline-variant flex items-center gap-md">
+<img alt="Municipal User Avatar" class="w-10 h-10 rounded-full grayscale" data-alt="A greyscale portrait of a professional municipal worker looking directly at the camera. The background is a clean, out-of-focus modern office setting. The lighting is soft and even, highlighting a serious but approachable expression. The overall tone is corporate, minimalist, and reliable, perfectly suited for a functional dashboard avatar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjVmqfGzlcaRQlE016bDKHzbJKImDpwPINegl0qv6iSXATSZwGgV5WM-qifSq3B7_RLmbByYG0u75dnKLnKc8S1LSn6J586gB_FrAcqlqWmaKHbmkcAH68a1w8W7eIhMhj6FEO4vseXkxNa_RMOpxWz79ENMEpLCA6hAPqmr3ausWwMBnr17eQwCu7h-1raTU_MvVpxzB2hsU1rQnhK-pGwHnljPrUGu9rItFtKZldrM-775VU0REIfiX40050FQBcDKcjP5kmvFk"/>
+<div class="flex flex-col">
+<span class="font-subtitulo text-subtitulo text-primary">Jhan Pérez</span>
+<span class="font-etiqueta text-etiqueta text-on-surface-variant">Usuario municipal</span>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="ml-[250px] flex-1 flex flex-col h-full bg-background overflow-hidden">
+<!-- TopNavBar -->
+<header class="h-[80px] w-full bg-surface-container-lowest border-b border-outline-variant flex justify-between items-center px-lg shrink-0 z-10">
+<div class="flex-1 max-w-md relative">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-xl pr-md py-sm rounded-lg border border-outline-variant bg-surface-container-lowest font-texto-general text-texto-general text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="Buscar reportes, zonas..." type="text"/>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-sm rounded-full text-on-surface-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+</header>
+<!-- Page Content -->
+<div class="flex-1 overflow-y-auto p-xl">
+<div class="max-w-[1440px] mx-auto w-full">
+<!-- Header Section -->
+<div class="mb-xl">
+<h2 class="font-titulo-principal text-titulo-principal text-primary mb-xs">Prioridades de atención</h2>
+<p class="font-texto-general text-texto-general text-on-surface-variant">Ordena los reportes según incidencia, riesgo y fecha para planificar intervenciones.</p>
+</div>
+<!-- Filters -->
+<div class="flex flex-wrap gap-md mb-xl p-md bg-surface-container-lowest border border-outline-variant rounded-lg shadow-sm">
+<div class="flex-1 min-w-[200px]">
+<label class="block font-etiqueta text-etiqueta text-on-surface-variant mb-xs">Distrito</label>
+<select class="w-full border-outline-variant rounded border bg-surface-container-lowest p-sm font-texto-general text-texto-general focus:ring-primary focus:border-primary">
+<option>Todos los distritos</option>
+<option>Centro Histórico</option>
+<option>San Isidro</option>
+</select>
+</div>
+<div class="flex-1 min-w-[200px]">
+<label class="block font-etiqueta text-etiqueta text-on-surface-variant mb-xs">Estado</label>
+<select class="w-full border-outline-variant rounded border bg-surface-container-lowest p-sm font-texto-general text-texto-general focus:ring-primary focus:border-primary">
+<option>Pendiente</option>
+<option>En progreso</option>
+</select>
+</div>
+<div class="flex-1 min-w-[200px]">
+<label class="block font-etiqueta text-etiqueta text-on-surface-variant mb-xs">Riesgo</label>
+<select class="w-full border-outline-variant rounded border bg-surface-container-lowest p-sm font-texto-general text-texto-general focus:ring-primary focus:border-primary">
+<option>Alto</option>
+<option>Medio</option>
+<option>Bajo</option>
+</select>
+</div>
+<div class="flex-1 min-w-[200px]">
+<label class="block font-etiqueta text-etiqueta text-on-surface-variant mb-xs">Fecha</label>
+<input class="w-full border-outline-variant rounded border bg-surface-container-lowest p-sm font-texto-general text-texto-general focus:ring-primary focus:border-primary" type="date"/>
+</div>
+</div>
+<!-- Two Column Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Column: Priority List -->
+<div class="lg:col-span-8 flex flex-col gap-md">
+<h3 class="font-subtitulo text-subtitulo text-primary">Lista priorizada</h3>
+<!-- High Priority Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-md shadow-sm flex flex-col md:flex-row gap-md items-start md:items-center hover:bg-surface-container-low transition-colors cursor-pointer relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary"></div>
+<div class="flex-1 pl-sm">
+<div class="flex items-center gap-sm mb-xs">
+<span class="bg-surface-container-highest text-primary px-sm py-xs rounded font-etiqueta text-etiqueta font-semibold border border-primary">Prioridad Alta</span>
+<span class="font-etiqueta text-etiqueta text-on-surface-variant">#REP-2023-089</span>
+</div>
+<h4 class="font-subtitulo text-subtitulo text-primary">Av. Central, Cuadra 12</h4>
+<p class="font-texto-general text-texto-general text-on-surface-variant mt-xs">Poste derribado por accidente de tránsito. Cables expuestos.</p>
+</div>
+<div class="flex flex-col items-end gap-sm min-w-[120px]">
+<span class="font-etiqueta text-etiqueta text-on-surface-variant">Hace 2 horas</span>
+<button class="px-md py-sm bg-surface-container-lowest border border-outline-variant rounded text-primary font-texto-general text-texto-general hover:bg-surface-container-low w-full text-center">Ver detalle</button>
+</div>
+</div>
+<!-- Medium Priority Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-md shadow-sm flex flex-col md:flex-row gap-md items-start md:items-center hover:bg-surface-container-low transition-colors cursor-pointer">
+<div class="flex-1">
+<div class="flex items-center gap-sm mb-xs">
+<span class="bg-surface-container text-on-surface px-sm py-xs rounded font-etiqueta text-etiqueta border border-outline-variant">Prioridad Media</span>
+<span class="font-etiqueta text-etiqueta text-on-surface-variant">#REP-2023-085</span>
+</div>
+<h4 class="font-subtitulo text-subtitulo text-primary">Jr. Las Palmeras, Parque Central</h4>
+<p class="font-texto-general text-texto-general text-on-surface-variant mt-xs">Sector del parque sin iluminación desde hace 3 días.</p>
+</div>
+<div class="flex flex-col items-end gap-sm min-w-[120px]">
+<span class="font-etiqueta text-etiqueta text-on-surface-variant">Hace 1 día</span>
+<button class="px-md py-sm bg-surface-container-lowest border border-outline-variant rounded text-primary font-texto-general text-texto-general hover:bg-surface-container-low w-full text-center">Ver detalle</button>
+</div>
+</div>
+<!-- Low Priority Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-md shadow-sm flex flex-col md:flex-row gap-md items-start md:items-center hover:bg-surface-container-low transition-colors cursor-pointer opacity-75">
+<div class="flex-1">
+<div class="flex items-center gap-sm mb-xs">
+<span class="bg-surface-container-low text-on-surface-variant px-sm py-xs rounded font-etiqueta text-etiqueta border border-outline-variant">Prioridad Baja</span>
+<span class="font-etiqueta text-etiqueta text-on-surface-variant">#REP-2023-071</span>
+</div>
+<h4 class="font-subtitulo text-subtitulo text-primary">Calle Los Pinos 450</h4>
+<p class="font-texto-general text-texto-general text-on-surface-variant mt-xs">Luminaria parpadea intermitentemente.</p>
+</div>
+<div class="flex flex-col items-end gap-sm min-w-[120px]">
+<span class="font-etiqueta text-etiqueta text-on-surface-variant">Hace 3 días</span>
+<button class="px-md py-sm bg-surface-container-lowest border border-outline-variant rounded text-primary font-texto-general text-texto-general hover:bg-surface-container-low w-full text-center">Ver detalle</button>
+</div>
+</div>
+<!-- Pagination (Placeholder) -->
+<div class="flex justify-center mt-md">
+<div class="flex gap-xs">
+<button class="w-8 h-8 rounded border border-outline-variant flex items-center justify-center bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container-low"><span class="material-symbols-outlined text-sm">chevron_left</span></button>
+<button class="w-8 h-8 rounded border border-primary flex items-center justify-center bg-primary text-on-primary">1</button>
+<button class="w-8 h-8 rounded border border-outline-variant flex items-center justify-center bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container-low">2</button>
+<button class="w-8 h-8 rounded border border-outline-variant flex items-center justify-center bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container-low"><span class="material-symbols-outlined text-sm">chevron_right</span></button>
+</div>
+</div>
+</div>
+<!-- Right Column: Report Config -->
+<div class="lg:col-span-4">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-lg shadow-sm sticky top-0">
+<h3 class="font-subtitulo text-subtitulo text-primary mb-md pb-sm border-b border-outline-variant">Informe operativo</h3>
+<form class="flex flex-col gap-md">
+<div>
+<label class="block font-etiqueta text-etiqueta text-on-surface-variant mb-xs">Nombre del informe</label>
+<input class="w-full border-outline-variant rounded border bg-surface-container-lowest p-sm font-texto-general text-texto-general focus:ring-primary focus:border-primary" placeholder="Ej: Reporte Semanal Distrito Norte" type="text"/>
+</div>
+<div>
+<label class="block font-etiqueta text-etiqueta text-on-surface-variant mb-xs">Formato de exportación</label>
+<select class="w-full border-outline-variant rounded border bg-surface-container-lowest p-sm font-texto-general text-texto-general focus:ring-primary focus:border-primary">
+<option>PDF Documento (.pdf)</option>
+<option>Hoja de cálculo (.xlsx)</option>
+<option>Datos crudos (.csv)</option>
+</select>
+</div>
+<div class="mt-sm">
+<label class="block font-etiqueta text-etiqueta text-primary font-semibold mb-sm">Contenido a incluir</label>
+<div class="flex flex-col gap-sm">
+<label class="flex items-center gap-sm cursor-pointer">
+<input checked="" class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-texto-general text-texto-general text-on-surface">Resumen ejecutivo</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer">
+<input checked="" class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-texto-general text-texto-general text-on-surface">Detalle de incidencias</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer">
+<input class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-texto-general text-texto-general text-on-surface">Evidencia fotográfica</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer">
+<input class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-texto-general text-texto-general text-on-surface">Métricas de tiempo de respuesta</span>
+</label>
+</div>
+</div>
+<div class="mt-lg pt-lg border-t border-outline-variant">
+<button class="w-full bg-primary text-on-primary rounded-lg py-md px-lg font-subtitulo text-subtitulo hover:bg-tertiary-container transition-colors shadow-sm flex justify-center items-center gap-sm" type="button">
+<span class="material-symbols-outlined">download</span>
+                                        Generar informe
+                                    </button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

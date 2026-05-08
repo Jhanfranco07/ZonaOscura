@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ZonaOscura - Mapa de zonas oscuras</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary": "#585f6a",
+                      "on-primary": "#ffffff",
+                      "on-secondary-fixed": "#151c25",
+                      "surface-container": "#edeeef",
+                      "on-background": "#191c1d",
+                      "on-tertiary-container": "#818488",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-tint": "#575e70",
+                      "on-primary-fixed-variant": "#404758",
+                      "outline": "#76777d",
+                      "error-container": "#ffdad6",
+                      "secondary-fixed-dim": "#c0c7d3",
+                      "surface-container-low": "#f3f4f5",
+                      "primary": "#000000",
+                      "secondary-fixed": "#dce3f0",
+                      "outline-variant": "#c6c6cd",
+                      "on-secondary": "#ffffff",
+                      "surface-dim": "#d9dadb",
+                      "on-error": "#ffffff",
+                      "on-primary-fixed": "#141b2b",
+                      "tertiary-container": "#191c1f",
+                      "primary-fixed": "#dce2f7",
+                      "on-tertiary-fixed-variant": "#44474a",
+                      "inverse-primary": "#c0c6db",
+                      "inverse-surface": "#2e3132",
+                      "on-primary-container": "#7d8497",
+                      "on-surface-variant": "#45464c",
+                      "error": "#ba1a1a",
+                      "surface-bright": "#f8f9fa",
+                      "surface-container-high": "#e7e8e9",
+                      "on-error-container": "#93000a",
+                      "tertiary-fixed": "#e0e2e6",
+                      "primary-fixed-dim": "#c0c6db",
+                      "surface-variant": "#e1e3e4",
+                      "on-secondary-fixed-variant": "#404752",
+                      "on-secondary-container": "#5e6570",
+                      "background": "#f8f9fa",
+                      "surface": "#f8f9fa",
+                      "secondary-container": "#dce3f0",
+                      "on-tertiary-fixed": "#191c1f",
+                      "primary-container": "#141b2b",
+                      "tertiary-fixed-dim": "#c4c7ca",
+                      "on-tertiary": "#ffffff",
+                      "on-surface": "#191c1d",
+                      "tertiary": "#000000",
+                      "surface-container-highest": "#e1e3e4",
+                      "inverse-on-surface": "#f0f1f2"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "sm": "8px",
+                      "xl": "32px",
+                      "lg": "24px",
+                      "xs": "4px",
+                      "md": "16px",
+                      "gutter": "24px"
+              },
+              "fontFamily": {
+                      "texto-general": [
+                              "Inter"
+                      ],
+                      "subtitulo": [
+                              "Inter"
+                      ],
+                      "etiqueta": [
+                              "Inter"
+                      ],
+                      "titulo-principal": [
+                              "Inter"
+                      ],
+                      "titulo-seccion": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "texto-general": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "subtitulo": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "etiqueta": [
+                              "13px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "titulo-principal": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "titulo-seccion": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+      </style>
+</head>
+<body class="bg-background text-on-background font-texto-general min-h-screen flex">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full w-[250px] bg-surface-container-low dark:bg-surface-container-low border-r border-outline-variant dark:border-outline-variant flex flex-col gap-sm p-md h-screen z-20">
+<div class="mb-lg">
+<h1 class="font-titulo-seccion text-titulo-seccion font-bold text-primary">ZonaOscura</h1>
+<p class="font-texto-general text-texto-general text-on-surface-variant">Gestión de Alumbrado</p>
+</div>
+<div class="flex flex-col gap-xs flex-1 overflow-y-auto">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-high dark:hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-texto-general text-texto-general">Inicio</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg bg-surface-container-highest dark:bg-surface-container-highest text-primary font-semibold scale-[0.98] transition-transform duration-150" href="#">
+<span class="material-symbols-outlined fill">map</span>
+<span class="font-texto-general text-texto-general">Mapa de zonas</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-high dark:hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="font-texto-general text-texto-general">Nuevo reporte</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-high dark:hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="font-texto-general text-texto-general">Reportes</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-high dark:hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-texto-general text-texto-general">Historial atendido</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-high dark:hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">admin_panel_settings</span>
+<span class="font-texto-general text-texto-general">Panel municipal</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-high dark:hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">priority_high</span>
+<span class="font-texto-general text-texto-general">Prioridades</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-high dark:hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<span class="font-texto-general text-texto-general">Informes</span>
+</a>
+</div>
+<div class="mt-auto pt-md border-t border-outline-variant flex items-center gap-sm">
+<div class="w-[40px] h-[40px] rounded-full bg-surface-variant flex-shrink-0 overflow-hidden">
+<img alt="Municipal User Avatar" class="w-full h-full object-cover" data-alt="A professional headshot of a municipal worker in a bright, modern office setting. The lighting is soft and natural, emphasizing a corporate, reliable aesthetic in high resolution grayscale with subtle contrast." src="https://lh3.googleusercontent.com/aida-public/AB6AXuChsDjcaQvT0NbXXTOzLtosSrnaeMQgY7nlABDeLosvSin8iliF1tSHK5GYGsw2fnLz5hLJTzBJmFFdLv49oNXIKb0N3fEoaMqG-RtdcPjA_r-9ncg8lFkCjgKGsJuL8zCPOGYnjVBM1JCoy4TvXsGaHQ7I6pLPLtePfoVFZYWj3qG79sa0Cpdhqy2-udJc7X-QzG9kutSJgVm7mmuKx7Rxu7G9B1v9v0fYOiGgCGXNx0JOH1KDyqdiACQKUBbh-M-HBiYK3TdpPps"/>
+</div>
+<div class="flex flex-col">
+<span class="font-subtitulo text-subtitulo text-primary">Jhan Pérez</span>
+<span class="font-etiqueta text-etiqueta text-on-surface-variant">Usuario municipal</span>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 ml-[250px] flex flex-col min-h-screen">
+<!-- TopNavBar -->
+<header class="h-[80px] bg-surface-container-lowest dark:bg-surface-container-lowest border-b border-outline-variant dark:border-outline-variant flex justify-between items-center px-lg w-full sticky top-0 z-10">
+<div class="flex items-center flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface text-on-surface border border-outline-variant rounded-lg font-texto-general text-texto-general focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary placeholder-on-tertiary-container" placeholder="Buscar reportes, zonas o usuarios..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-low rounded-full transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-primary rounded-full"></span>
+</button>
+</div>
+</header>
+<!-- Page Content -->
+<main class="flex-1 p-lg max-w-[1440px] mx-auto w-full flex flex-col gap-lg">
+<!-- Headers -->
+<div class="flex flex-col gap-xs">
+<h2 class="font-titulo-principal text-titulo-principal text-primary">Mapa de zonas oscuras</h2>
+<p class="font-texto-general text-texto-general text-on-surface-variant">Visualiza reportes ciudadanos geolocalizados y zonas de mayor incidencia.</p>
+</div>
+<!-- Filters -->
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-lg flex flex-wrap gap-md items-center shadow-[0px_4px_6px_rgba(0,0,0,0.05)]">
+<div class="flex flex-col gap-xs flex-1 min-w-[200px]">
+<label class="font-etiqueta text-etiqueta text-on-surface-variant">Distrito</label>
+<select class="w-full p-2 bg-surface border border-outline-variant rounded-lg font-texto-general text-texto-general text-on-surface focus:border-primary focus:ring-1 focus:ring-primary">
+<option>Todos los distritos</option>
+<option>Centro</option>
+<option>Norte</option>
+</select>
+</div>
+<div class="flex flex-col gap-xs flex-1 min-w-[200px]">
+<label class="font-etiqueta text-etiqueta text-on-surface-variant">Tipo de Problema</label>
+<select class="w-full p-2 bg-surface border border-outline-variant rounded-lg font-texto-general text-texto-general text-on-surface focus:border-primary focus:ring-1 focus:ring-primary">
+<option>Luminaria apagada</option>
+<option>Poste dañado</option>
+<option>Cableado expuesto</option>
+</select>
+</div>
+<div class="flex flex-col gap-xs flex-1 min-w-[200px]">
+<label class="font-etiqueta text-etiqueta text-on-surface-variant">Estado</label>
+<select class="w-full p-2 bg-surface border border-outline-variant rounded-lg font-texto-general text-texto-general text-on-surface focus:border-primary focus:ring-1 focus:ring-primary">
+<option>Pendiente</option>
+<option>En progreso</option>
+<option>Resuelto</option>
+</select>
+</div>
+<div class="flex flex-col gap-xs flex-1 min-w-[200px]">
+<label class="font-etiqueta text-etiqueta text-on-surface-variant">Fecha</label>
+<input class="w-full p-2 bg-surface border border-outline-variant rounded-lg font-texto-general text-texto-general text-on-surface focus:border-primary focus:ring-1 focus:ring-primary" type="date"/>
+</div>
+<div class="flex items-end self-stretch pt-6">
+<button class="px-md py-2 bg-primary text-on-primary rounded-lg font-subtitulo text-texto-general hover:opacity-90 transition-opacity">
+                        Filtrar
+                    </button>
+</div>
+</div>
+<!-- Map and Details Panel (Bento Grid Style) -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-lg h-[600px]">
+<!-- Map Area (Spans 2 columns) -->
+<div class="lg:col-span-2 bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden flex flex-col shadow-[0px_4px_6px_rgba(0,0,0,0.05)] relative">
+<div class="w-full h-full bg-surface-variant" data-location="Lima" style="">
+<!-- Placeholder for Map Image -->
+<img alt="Grayscale Map" class="w-full h-full object-cover grayscale opacity-80" data-alt="A top-down satellite view or high-contrast street map of a sprawling urban city. Rendered entirely in crisp grayscale with sharp vector-like roads and minimal texture. The map shows distinct city blocks and arterial roads, designed for a high-tech corporate dashboard aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBGFqZFh3jS3SdqtdrB0RjWjyGavGzLlu7qTBmsDgPMDayUElBdakjx5MQWWcztXf2_pKaW05D4KMr7G1zcNEa6MP2tYEKBu6wFUovW6Z9I1T7sGrdpgd2Kw4IYKdnyo9PqYtwMgowSdn0lcakukIBuJtKfeXhKDkOyqNW9KICN0bur7nwJ-0-TFburBMBZiR5y9I7sU3Cr_zxLvPy8DTaj5ZfJm8ixclcABe0p7wqG4XqYLLGOFVdMxg3Z1cBFiuFmDm7hdLw-xI"/>
+</div>
+<!-- Floating Map Legend -->
+<div class="absolute bottom-md left-md bg-surface-container-lowest border border-outline-variant rounded-lg p-sm shadow-md">
+<h4 class="font-subtitulo text-etiqueta mb-2">Incidencia</h4>
+<div class="flex flex-col gap-xs">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-outline-variant"></span>
+<span class="font-etiqueta text-etiqueta">Baja</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-surface-tint"></span>
+<span class="font-etiqueta text-etiqueta">Media</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-primary"></span>
+<span class="font-etiqueta text-etiqueta">Alta</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Selected Zone Panel -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-md flex flex-col gap-md shadow-[0px_4px_6px_rgba(0,0,0,0.05)] overflow-y-auto">
+<h3 class="font-titulo-seccion text-titulo-seccion text-primary border-b border-outline-variant pb-sm">Zona seleccionada</h3>
+<div class="w-full aspect-video rounded-lg overflow-hidden bg-surface-variant">
+<img alt="Street View" class="w-full h-full object-cover grayscale" data-alt="A low-angle street-level photograph of an urban intersection at dusk. The scene is rendered in high-contrast grayscale, showing a damaged street light pole against a dramatic sky. The style is documentary and corporate, emphasizing infrastructure issues clearly without color distractions." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAG3QPVRR2mZYaKLd4aj1XAOpu7mKLSJu9GYPn1YjtfJOWeSBJiEPT-9Rzw-xs64bCE2dqH9K34Ih9be6P4TbC5Wnbi16nClIft3eElakmD7nXFjTPSXHXdIZ16hikCwS8spz_qlwtEmIGNfeVM_HiHsFwKH-3c9vxZKELYaDa4zfXil2xCT26jMEQvn7kteoJIW4xmUfJFRXGWwh-dYctMaZHoKExshkopXqc77jPQmDWaz-8hbEjLBulQHbJPSJixPvd0lmypYlw"/>
+</div>
+<div class="flex flex-col gap-sm">
+<div>
+<span class="font-etiqueta text-etiqueta text-on-surface-variant">Dirección</span>
+<p class="font-subtitulo text-subtitulo text-on-surface">Av. Principal con Calle 8</p>
+</div>
+<div class="flex justify-between items-center py-sm border-t border-b border-outline-variant">
+<div class="flex flex-col">
+<span class="font-etiqueta text-etiqueta text-on-surface-variant">Estado actual</span>
+<div class="flex items-center gap-2 mt-1">
+<span class="material-symbols-outlined text-primary text-[18px]">warning</span>
+<span class="font-subtitulo text-texto-general font-bold">Crítico</span>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-etiqueta text-etiqueta text-on-surface-variant">Confirmaciones</span>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-surface-tint text-[18px]">group</span>
+<span class="font-subtitulo text-texto-general font-bold">24 vecinos</span>
+</div>
+</div>
+</div>
+<div>
+<span class="font-etiqueta text-etiqueta text-on-surface-variant">Descripción del problema principal</span>
+<p class="font-texto-general text-texto-general text-on-surface mt-1">
+                                Falla masiva en el circuito de iluminación del sector norte de la avenida. Múltiples reportes de oscuridad total desde hace 48 horas, incrementando percepción de inseguridad.
+                            </p>
+</div>
+</div>
+<div class="mt-auto pt-md flex gap-sm">
+<button class="flex-1 bg-primary text-on-primary font-subtitulo text-texto-general py-2 rounded-lg hover:opacity-90 transition-opacity flex justify-center items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">assignment</span>
+                            Crear Orden
+                        </button>
+<button class="px-4 bg-surface-container-lowest text-on-surface border border-outline-variant rounded-lg hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Bottom Table -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg shadow-[0px_4px_6px_rgba(0,0,0,0.05)] overflow-hidden">
+<div class="p-md border-b border-outline-variant flex justify-between items-center">
+<h3 class="font-titulo-seccion text-subtitulo text-primary">Últimos reportes del mapa</h3>
+<button class="text-on-surface-variant hover:text-primary font-etiqueta text-etiqueta flex items-center gap-1">
+                        Ver todos
+                        <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="p-md font-etiqueta text-etiqueta text-on-surface-variant font-semibold">ID Reporte</th>
+<th class="p-md font-etiqueta text-etiqueta text-on-surface-variant font-semibold">Ubicación</th>
+<th class="p-md font-etiqueta text-etiqueta text-on-surface-variant font-semibold">Tipo</th>
+<th class="p-md font-etiqueta text-etiqueta text-on-surface-variant font-semibold">Fecha</th>
+<th class="p-md font-etiqueta text-etiqueta text-on-surface-variant font-semibold">Estado</th>
+</tr>
+</thead>
+<tbody class="font-texto-general text-texto-general text-on-surface">
+<tr class="border-b border-outline-variant hover:bg-surface transition-colors cursor-pointer">
+<td class="p-md font-subtitulo text-texto-general">#ZO-1042</td>
+<td class="p-md">Av. Principal con Calle 8</td>
+<td class="p-md">Apagón sectorial</td>
+<td class="p-md text-on-surface-variant">Hoy, 14:30</td>
+<td class="p-md">
+<span class="inline-flex items-center px-2 py-1 rounded-md bg-surface-container-highest border border-outline-variant text-etiqueta">
+                                        Crítico
+                                    </span>
+</td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface transition-colors cursor-pointer">
+<td class="p-md font-subtitulo text-texto-general">#ZO-1041</td>
+<td class="p-md">Parque Central, Sector B</td>
+<td class="p-md">Luminaria intermitente</td>
+<td class="p-md text-on-surface-variant">Hoy, 11:15</td>
+<td class="p-md">
+<span class="inline-flex items-center px-2 py-1 rounded-md bg-surface-container-low border border-outline-variant text-etiqueta">
+                                        Pendiente
+                                    </span>
+</td>
+</tr>
+<tr class="hover:bg-surface transition-colors cursor-pointer">
+<td class="p-md font-subtitulo text-texto-general">#ZO-1040</td>
+<td class="p-md">Jr. Las Camelias 450</td>
+<td class="p-md">Poste inclinado</td>
+<td class="p-md text-on-surface-variant">Ayer, 18:45</td>
+<td class="p-md">
+<span class="inline-flex items-center px-2 py-1 rounded-md bg-surface-container-low border border-outline-variant text-etiqueta">
+                                        Pendiente
+                                    </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+</div>
+</body></html>
