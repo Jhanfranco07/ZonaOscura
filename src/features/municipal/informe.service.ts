@@ -63,8 +63,8 @@ function crearPdfInforme(reportes: ReporteInforme[], origen: string) {
     contentWidth
   );
 
-  y += 3;
-  drawMetricGrid(doc, [
+  y += 5;
+  y = drawMetricGrid(doc, [
     ["Reportes", String(total)],
     ["Pendientes", String(pendientes)],
     ["En evaluación", String(evaluacion)],
@@ -72,7 +72,7 @@ function crearPdfInforme(reportes: ReporteInforme[], origen: string) {
     ["Atendidos", String(atendidos)],
     ["Críticos", String(criticos)]
   ], margin, y);
-  y += 30;
+  y += 10;
 
   doc.setFont("helvetica", "bold");
   doc.setFontSize(13);
@@ -87,7 +87,7 @@ function crearPdfInforme(reportes: ReporteInforme[], origen: string) {
     "Tipo de problema de alumbrado público identificado."
   ];
   criterios.forEach((criterio) => {
-    doc.text(`• ${criterio}`, margin + 2, y);
+    doc.text(`- ${criterio}`, margin + 2, y);
     y += 6;
   });
 
@@ -132,13 +132,15 @@ function crearPdfInforme(reportes: ReporteInforme[], origen: string) {
 }
 
 function drawMetricGrid(doc: jsPDF, metrics: [string, string][], x: number, y: number) {
-  const cardWidth = 28;
+  const cardWidth = 50;
   const cardHeight = 18;
+  const gapX = 8;
+  const gapY = 6;
   metrics.forEach(([label, value], index) => {
     const col = index % 3;
     const row = Math.floor(index / 3);
-    const left = x + col * (cardWidth + 6);
-    const top = y + row * (cardHeight + 5);
+    const left = x + col * (cardWidth + gapX);
+    const top = y + row * (cardHeight + gapY);
     doc.setFillColor(241, 245, 249);
     doc.roundedRect(left, top, cardWidth, cardHeight, 2, 2, "F");
     doc.setTextColor(82, 96, 113);
@@ -150,6 +152,8 @@ function drawMetricGrid(doc: jsPDF, metrics: [string, string][], x: number, y: n
     doc.text(value, left + 3, top + 14);
     doc.setFont("helvetica", "normal");
   });
+  const rows = Math.ceil(metrics.length / 3);
+  return y + rows * cardHeight + (rows - 1) * gapY;
 }
 
 function drawReportsTable(doc: jsPDF, reportes: ReporteInforme[], x: number, y: number, width: number) {
