@@ -1,13 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { Map, MapControls, MapMarker, MarkerContent, MarkerPopup } from "@/components/ui/map";
 import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
 
 const quickPoints = [
-  { label: "Pachacámac", lat: -12.2296, lng: -76.8614, left: 30, top: 44 },
-  { label: "Manchay", lat: -12.1129, lng: -76.8832, left: 54, top: 30 },
-  { label: "José Gálvez", lat: -12.2015, lng: -76.9348, left: 70, top: 58 }
+  { label: "Pachacámac", lat: -12.2296, lng: -76.8614 },
+  { label: "Manchay", lat: -12.1129, lng: -76.8832 },
+  { label: "José Gálvez", lat: -12.2015, lng: -76.9348 }
 ];
 
 export function LocationPicker({
@@ -54,33 +55,40 @@ export function LocationPicker({
           aria-label="Longitud"
         />
       </div>
-      <div className="relative h-[260px] w-full overflow-hidden rounded-lg border border-outline-variant bg-[#eef4f7]">
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(15,23,42,0.05)_1px,transparent_1px),linear-gradient(rgba(15,23,42,0.05)_1px,transparent_1px)] bg-[size:34px_34px]" />
-        <div className="absolute left-[10%] top-0 h-full w-[8px] rotate-[12deg] bg-white shadow-sm" />
-        <div className="absolute left-[48%] top-[-10%] h-[120%] w-[10px] -rotate-[16deg] bg-white shadow-sm" />
-        <div className="absolute left-0 top-[32%] h-[9px] w-full -rotate-[4deg] bg-white shadow-sm" />
-        <div className="absolute left-0 top-[70%] h-[9px] w-full rotate-[3deg] bg-white shadow-sm" />
 
-        {quickPoints.map((point) => {
-          const active = Math.abs(point.lat - lat) < 0.0001 && Math.abs(point.lng - lng) < 0.0001;
-          return (
+      <div className="relative h-[300px] overflow-hidden rounded-lg border border-outline-variant bg-slate-100">
+        <Map center={[lng, lat]} zoom={13} theme="light">
+          <MapControls position="top-right" showZoom showCompass showLocate />
+          <MapMarker
+            longitude={lng}
+            latitude={lat}
+            draggable
+            onDragEnd={(position) => setLocation(position.lat, position.lng)}
+          >
+            <MarkerContent>
+              <div className="cursor-move">
+                <span className="material-symbols-outlined fill text-[38px] text-amber-500 drop-shadow-lg">location_on</span>
+              </div>
+            </MarkerContent>
+            <MarkerPopup>
+              <div className="space-y-xs rounded-lg border border-slate-200 bg-white p-sm text-sm shadow-xl">
+                <p className="font-semibold text-primary">Ubicación del reporte</p>
+                <p className="text-xs text-on-surface-variant">{lat.toFixed(5)}, {lng.toFixed(5)}</p>
+              </div>
+            </MarkerPopup>
+          </MapMarker>
+        </Map>
+        <div className="absolute bottom-sm left-sm z-10 flex flex-wrap gap-xs rounded-lg border border-slate-200 bg-white/92 p-xs shadow-sm backdrop-blur">
+          {quickPoints.map((point) => (
             <button
               key={point.label}
               type="button"
+              className="rounded-md px-sm py-xs text-xs font-semibold text-primary hover:bg-blue-50"
               onClick={() => setLocation(point.lat, point.lng)}
-              className="absolute -translate-x-1/2 -translate-y-full"
-              style={{ left: `${point.left}%`, top: `${point.top}%` }}
-              title={point.label}
             >
-              <span className={`material-symbols-outlined fill text-[34px] ${active ? "text-amber-500" : "text-primary"}`}>
-                location_on
-              </span>
+              {point.label}
             </button>
-          );
-        })}
-
-        <div className="absolute bottom-sm left-sm rounded-lg border border-slate-200 bg-white/92 p-sm text-xs text-on-surface-variant shadow-sm">
-          Selecciona una zona sugerida o usa tu ubicación actual.
+          ))}
         </div>
       </div>
     </div>
