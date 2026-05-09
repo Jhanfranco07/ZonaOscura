@@ -2,12 +2,17 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ReportDetail } from "@/components/reports/ReportDetail";
 import { obtenerReportePorId } from "@/features/reportes/reporte.service";
+import { obtenerReporteDemoPorId } from "@/lib/demoData";
 
 export default async function ReporteDetallePage({ params }: { params: { id: string } }) {
   let reporte = null;
   try {
     reporte = await obtenerReportePorId(params.id);
   } catch {}
+
+  if (!reporte) {
+    reporte = obtenerReporteDemoPorId(params.id) as any;
+  }
 
   if (!reporte) notFound();
 

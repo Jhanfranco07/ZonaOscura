@@ -3,17 +3,26 @@ import { MunicipalStatsCards } from "@/components/municipal/MunicipalStatsCards"
 import { RecentReports } from "@/components/dashboard/RecentReports";
 import { Card } from "@/components/ui/Card";
 import { obtenerDashboardMunicipal } from "@/features/municipal/municipal.service";
-import { obtenerMetricasReportes } from "@/features/reportes/reporte.service";
-import { reportesDemo } from "@/lib/demoData";
+import { obtenerMetricasDemo, obtenerResumenDistritosDemo, reportesDemo } from "@/lib/demoData";
 
 export const dynamic = "force-dynamic";
 
 export default async function MunicipalPage() {
-  let data: any = { total: 128, pendientes: 46, evaluacion: 22, atendidos: 72, porDistrito: [], ultimos: reportesDemo };
+  const metricasDemo = obtenerMetricasDemo(reportesDemo);
+  let data: any = {
+    total: metricasDemo.total,
+    pendientes: metricasDemo.pendientes,
+    evaluacion: reportesDemo.filter((reporte) => reporte.estado === "EN_EVALUACION").length,
+    atendidos: metricasDemo.atendidos,
+    porDistrito: obtenerResumenDistritosDemo(reportesDemo),
+    ultimos: reportesDemo
+  };
+
   try {
     data = await obtenerDashboardMunicipal();
   } catch {}
-  const criticos = await obtenerMetricasSeguras();
+
+  const criticos = data.criticos ?? metricasDemo.criticos;
 
   return (
     <div className="flex flex-col gap-xl">
@@ -27,14 +36,10 @@ export default async function MunicipalPage() {
         <Card className="p-lg lg:col-span-5">
           <h2 className="font-subtitulo text-subtitulo text-primary">Resumen por distrito</h2>
           <div className="mt-md space-y-md">
-            {(data.porDistrito.length ? data.porDistrito : [
-              { distrito: "Pachacámac", _count: 64 },
-              { distrito: "Manchay", _count: 42 },
-              { distrito: "José Gálvez", _count: 22 }
-            ]).map((item: any) => (
+            {data.porDistrito.map((item: any) => (
               <div key={item.distrito}>
                 <div className="flex justify-between gap-md text-sm"><span>{item.distrito}</span><strong>{item._count} reportes</strong></div>
-                <div className="mt-xs h-2 overflow-hidden rounded-full bg-surface-container"><div className="h-full bg-safety-blue" style={{ width: `${Math.min(100, item._count)}%` }} /></div>
+                <div className="mt-xs h-2 overflow-hidden rounded-full bg-surface-container"><div className="h-full bg-safety-blue" style={{ width: `${Math.min(100, item._count * 20)}%` }} /></div>
               </div>
             ))}
           </div>
@@ -52,13 +57,4 @@ export default async function MunicipalPage() {
       </div>
     </div>
   );
-}
-
-async function obtenerMetricasSeguras() {
-  try {
-    const metricas = await obtenerMetricasReportes();
-    return metricas.criticos;
-  } catch {
-    return 10;
-  }
 }

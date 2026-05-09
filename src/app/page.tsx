@@ -3,19 +3,19 @@ import { RecentReports } from "@/components/dashboard/RecentReports";
 import { StatsCard } from "@/components/dashboard/StatsCard";
 import { UserStoriesMatrix } from "@/components/dashboard/UserStoriesMatrix";
 import { obtenerMetricasReportes, obtenerReportes } from "@/features/reportes/reporte.service";
-import { reportesDemo } from "@/lib/demoData";
+import { obtenerMetricasDemo, reportesDemo } from "@/lib/demoData";
 
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
-  let metricas = { total: 128, pendientes: 46, atendidos: 72, criticos: 10 };
   let reportes = reportesDemo;
+  let metricas = obtenerMetricasDemo(reportesDemo);
 
   try {
-    metricas = await obtenerMetricasReportes();
     reportes = await obtenerReportes();
+    metricas = await obtenerMetricasReportes();
   } catch {
-    // La maqueta queda visible aunque todavía no exista DATABASE_URL.
+    // El prototipo conserva datos coherentes si la base de datos no responde.
   }
 
   return (
@@ -29,7 +29,7 @@ export default async function HomePage() {
                 Seguridad ciudadana e iluminación pública
               </p>
               <h1 className="max-w-3xl font-titulo-principal text-[30px] leading-tight text-white sm:text-[38px]">
-                Reporta, visualiza y prioriza zonas oscuras de la ciudad
+                Reporta, visualiza y prioriza zonas oscuras de Lima
               </h1>
               <p className="mt-sm max-w-2xl font-subtitulo text-[17px] leading-7 text-blue-100">
                 ZonaOscura conecta reportes ciudadanos con la gestión municipal para reducir rutas inseguras y planificar mantenimiento de luminarias.
