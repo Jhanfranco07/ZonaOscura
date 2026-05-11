@@ -38,14 +38,14 @@ function DesktopCardReporte({ reporte }: { reporte: ReporteZonaOscura }) {
 
 function MobileCardReporte({ reporte }: { reporte: ReporteZonaOscura }) {
   return (
-    <article className="relative overflow-hidden rounded-2xl border border-slate-700/70 bg-[linear-gradient(145deg,rgba(17,24,39,0.96),rgba(13,17,23,0.98))] p-md shadow-[0_18px_46px_rgba(2,6,23,0.42)] ring-1 ring-white/[0.05] backdrop-blur lg:hidden">
+    <article className="theme-surface relative overflow-hidden rounded-2xl border border-slate-700/70 bg-[linear-gradient(145deg,rgba(17,24,39,0.96),rgba(13,17,23,0.98))] p-md shadow-[0_18px_46px_rgba(2,6,23,0.42)] ring-1 ring-white/[0.05] backdrop-blur lg:hidden">
       <div className="absolute inset-x-5 top-0 h-px bg-gradient-to-r from-transparent via-amber-300/75 to-transparent" />
       <div className="absolute -right-16 -top-16 h-36 w-36 rounded-full bg-amber-400/10 blur-3xl" />
 
       <div className="relative flex items-start justify-between gap-md">
         <div className="min-w-0 flex-1">
           <ReportMeta codigo={reporte.codigo} fecha={reporte.fechaCreacion} dark />
-          <h3 className="mt-sm font-subtitulo text-[18px] font-bold leading-snug text-slate-50">{reporte.direccion}</h3>
+          <h3 className="theme-text-primary mt-sm font-subtitulo text-[18px] font-bold leading-snug text-slate-50">{reporte.direccion}</h3>
         </div>
         <div className="flex shrink-0 flex-col items-end gap-xs">
           <PriorityBadge prioridad={reporte.prioridad} dark />
@@ -53,7 +53,7 @@ function MobileCardReporte({ reporte }: { reporte: ReporteZonaOscura }) {
         </div>
       </div>
 
-      <div className="relative mt-md grid gap-xs text-[13px] text-slate-300">
+      <div className="theme-text-muted relative mt-md grid gap-xs text-[13px] text-slate-300">
         <ReportDetail icon="location_on" label={reporte.distrito} dark />
         <ReportDetail icon="lightbulb" label={etiquetasTipoProblema[reporte.tipoProblema]} dark />
       </div>

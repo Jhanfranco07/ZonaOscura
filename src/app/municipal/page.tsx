@@ -26,10 +26,10 @@ export default async function MunicipalPage() {
 
   return (
     <div className="flex flex-col gap-xl max-lg:gap-lg">
-      <section className="overflow-hidden rounded-2xl border border-slate-800 bg-[linear-gradient(135deg,#111827_0%,#0f172a_52%,#0D1117_100%)] p-lg text-white shadow-[0_18px_48px_rgba(15,23,42,0.18)] max-lg:p-md">
+      <section className="theme-hero overflow-hidden rounded-2xl border border-slate-800 bg-[linear-gradient(135deg,#111827_0%,#0f172a_52%,#0D1117_100%)] p-lg text-white shadow-[0_18px_48px_rgba(15,23,42,0.18)] max-lg:p-md">
         <p className="font-etiqueta text-etiqueta font-semibold uppercase text-amber-200">Gestión municipal</p>
-        <h1 className="mt-xs font-titulo-principal text-titulo-principal text-white max-lg:text-[30px]">Panel municipal</h1>
-        <p className="mt-xs max-w-3xl text-blue-100 max-lg:text-[14px] max-lg:leading-6">
+        <h1 className="theme-text-primary mt-xs font-titulo-principal text-titulo-principal text-white max-lg:text-[30px]">Panel municipal</h1>
+        <p className="theme-text-muted mt-xs max-w-3xl text-blue-100 max-lg:text-[14px] max-lg:leading-6">
           Indicadores para revisar reportes, evitar duplicidad de intervención y priorizar mantenimiento de alumbrado público.
         </p>
       </section>
@@ -38,8 +38,8 @@ export default async function MunicipalPage() {
       <MunicipalInsightBar data={{ ...data, criticos }} />
 
       <div className="grid grid-cols-1 gap-gutter lg:grid-cols-12">
-        <Card className="rounded-2xl p-lg max-lg:border-slate-700/70 max-lg:bg-[#111827]/82 max-lg:p-md lg:col-span-5">
-          <h2 className="font-subtitulo text-subtitulo text-primary max-lg:text-white">Resumen por distrito</h2>
+        <Card className="theme-surface rounded-2xl p-lg max-lg:border-slate-700/70 max-lg:bg-[#111827]/82 max-lg:p-md lg:col-span-5">
+          <h2 className="theme-text-primary font-subtitulo text-subtitulo text-primary max-lg:text-white">Resumen por distrito</h2>
           <div className="mt-md space-y-md">
             {data.porDistrito.map((item: any) => (
               <div key={item.distrito}>
@@ -55,8 +55,8 @@ export default async function MunicipalPage() {
           </div>
         </Card>
 
-        <Card className="rounded-2xl p-lg max-lg:border-slate-700/70 max-lg:bg-[#111827]/82 max-lg:p-md lg:col-span-3">
-          <h2 className="font-subtitulo text-subtitulo text-primary max-lg:text-white">Acciones rápidas</h2>
+        <Card className="theme-surface rounded-2xl p-lg max-lg:border-slate-700/70 max-lg:bg-[#111827]/82 max-lg:p-md lg:col-span-3">
+          <h2 className="theme-text-primary font-subtitulo text-subtitulo text-primary max-lg:text-white">Acciones rápidas</h2>
           <div className="mt-md flex flex-col gap-md">
             <Link className="rounded-xl bg-primary px-md py-sm text-center font-semibold text-on-primary shadow-[0_10px_26px_rgba(15,23,42,0.16)]" href="/municipal/prioridades">
               Ver prioridades
@@ -81,7 +81,7 @@ function MunicipalInsightBar({ data }: { data: any }) {
   const atendidoPct = Math.round(((data.atendidos ?? 0) / total) * 100);
 
   return (
-    <section className="grid grid-cols-3 gap-xs rounded-2xl border border-white/10 bg-white/[0.05] p-sm shadow-[0_16px_38px_rgba(2,6,23,0.22)] ring-1 ring-white/[0.04] lg:hidden">
+    <section className="theme-surface grid grid-cols-3 gap-xs rounded-2xl border border-white/10 bg-white/[0.05] p-sm shadow-[0_16px_38px_rgba(2,6,23,0.22)] ring-1 ring-white/[0.04] lg:hidden">
       <MiniInsight label="Pendiente" value={`${pendientePct}%`} icon="pending_actions" />
       <MiniInsight label="Atendido" value={`${atendidoPct}%`} icon="task_alt" />
       <MiniInsight label="Crítico" value={data.criticos ?? 0} icon="warning" accent />

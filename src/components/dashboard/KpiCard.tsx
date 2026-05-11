@@ -45,7 +45,7 @@ export function KpiCard({ title, value, description, icon, tone = "blue", critic
   return (
     <article
       className={cn(
-        "group relative min-h-[132px] overflow-hidden rounded-2xl border p-md shadow-[0_18px_42px_rgba(15,23,42,0.09)] transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_22px_52px_rgba(15,23,42,0.13)] max-lg:min-h-[112px] max-lg:p-sm",
+        "theme-surface group relative min-h-[132px] overflow-hidden rounded-2xl border p-md shadow-[0_18px_42px_rgba(15,23,42,0.09)] transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_22px_52px_rgba(15,23,42,0.13)] max-lg:min-h-[112px] max-lg:p-sm",
         critical
           ? "border-amber-300/45 bg-[linear-gradient(135deg,#101827_0%,#0D1117_52%,#05070D_100%)] text-white ring-1 ring-white/[0.05]"
           : cn(
@@ -57,7 +57,7 @@ export function KpiCard({ title, value, description, icon, tone = "blue", critic
       <div className={cn("absolute -right-10 -top-10 h-28 w-28 rounded-full blur-2xl", critical ? "bg-orange-500/16" : styles.glow)} />
       <div className="relative flex h-full flex-col justify-between gap-md">
         <div className="flex items-start justify-between gap-md">
-          <p className={cn("font-etiqueta text-[12px] font-bold uppercase leading-4 tracking-wide", critical ? "text-amber-100" : "text-slate-600 max-lg:text-slate-300")}>
+          <p className={cn("theme-text-muted font-etiqueta text-[12px] font-bold uppercase leading-4 tracking-wide", critical ? "text-amber-100" : "text-slate-600 max-lg:text-slate-300")}>
             {title}
           </p>
           <span
@@ -71,10 +71,10 @@ export function KpiCard({ title, value, description, icon, tone = "blue", critic
         </div>
 
         <div>
-          <p className={cn("font-titulo-principal text-[36px] leading-none tracking-normal max-lg:text-[28px]", critical ? "text-orange-300" : cn(styles.value, "max-lg:text-white"))}>
+          <p className={cn("theme-text-primary font-titulo-principal text-[36px] leading-none tracking-normal max-lg:text-[28px]", critical ? "text-orange-300" : cn(styles.value, "max-lg:text-white"))}>
             {value}
           </p>
-          <p className={cn("mt-xs text-sm leading-5 max-lg:text-[12px] max-lg:leading-4", critical ? "text-slate-300" : "text-on-surface-variant max-lg:text-slate-400")}>
+          <p className={cn("theme-text-muted mt-xs text-sm leading-5 max-lg:text-[12px] max-lg:leading-4", critical ? "text-slate-300" : "text-on-surface-variant max-lg:text-slate-400")}>
             {description ?? "Indicador actualizado del sistema"}
           </p>
         </div>

@@ -1,5 +1,7 @@
 "use client";
 
+import { ThemeToggle } from "@/components/layout/ThemeToggle";
+
 type HeaderProps = {
   usuario?: string;
   onSearch?: (value: string) => void;
@@ -18,6 +20,7 @@ export function Header({ usuario = "Jhan Pérez", onSearch }: HeaderProps) {
       </div>
 
       <div className="flex items-center gap-md">
+        <ThemeToggle />
         <button
           aria-label="Notificaciones"
           className="relative flex h-10 w-10 items-center justify-center rounded-lg bg-amber-50 text-primary transition-colors hover:bg-amber-100"

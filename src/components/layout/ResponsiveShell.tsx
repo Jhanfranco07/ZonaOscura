@@ -1,6 +1,7 @@
 import { Header } from "@/components/layout/Header";
 import { MobileNav } from "@/components/layout/MobileNav";
 import { Sidebar } from "@/components/layout/Sidebar";
+import { ThemeToggle } from "@/components/layout/ThemeToggle";
 
 export function ResponsiveShell({ children }: { children: React.ReactNode }) {
   return (
@@ -12,6 +13,7 @@ export function ResponsiveShell({ children }: { children: React.ReactNode }) {
           {children}
         </main>
       </div>
+      <ThemeToggle compact className="fixed right-4 top-4 z-30 lg:hidden" />
       <MobileNav />
     </div>
   );
