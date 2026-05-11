@@ -10,13 +10,15 @@ import { Select } from "@/components/ui/Select";
 import { Textarea } from "@/components/ui/Textarea";
 import { EvidenceUploader } from "@/components/reports/EvidenceUploader";
 import { LocationPicker } from "@/components/maps/LocationPicker";
+import { DistrictCombobox } from "@/components/reports/DistrictCombobox";
 import { crearReporteAction } from "@/features/reportes/reporte.actions";
 import { etiquetasTipoProblema } from "@/lib/utils";
 
 export function ReportForm() {
   const [state, formAction] = useFormState(crearReporteAction, null);
   const [urlImagen, setUrlImagen] = useState("");
-  const [ubicacion, setUbicacion] = useState({ latitud: -12.2296, longitud: -76.8614 });
+  const [distrito, setDistrito] = useState("");
+  const [ubicacion, setUbicacion] = useState({ latitud: -12.0614, longitud: -76.9331 });
 
   return (
     <form action={formAction} className="grid grid-cols-1 gap-gutter lg:grid-cols-12">
@@ -25,15 +27,16 @@ export function ReportForm() {
         <Card className="p-lg">
           <SectionTitle icon="location_on" title="Ubicación del punto oscuro" step="01" />
           <div className="grid grid-cols-1 gap-md sm:grid-cols-2">
-            <Input className="sm:col-span-2" name="direccion" placeholder="Dirección (Ej. Jr. Las Palmeras cuadra 4)" required />
+            <Input className="sm:col-span-2" name="direccion" placeholder="Dirección (Ej. Av. Universitaria cuadra 12)" required />
             <Input name="referencia" placeholder="Referencia cercana" />
-            <Input name="distrito" placeholder="Distrito" required />
+            <DistrictCombobox value={distrito} onChange={setDistrito} />
           </div>
           <div className="mt-md overflow-hidden rounded-lg border border-outline-variant bg-surface-container-low">
             <LocationPicker
               latitud={ubicacion.latitud}
               longitud={ubicacion.longitud}
               onChange={(latitud, longitud) => setUbicacion({ latitud, longitud })}
+              onDistrictChange={setDistrito}
             />
           </div>
         </Card>
@@ -88,6 +91,7 @@ export function ReportForm() {
           </div>
           <div className="mt-md space-y-sm text-sm text-on-surface-variant">
             <p className="flex gap-sm"><span className="material-symbols-outlined text-[18px] text-safety-blue">map</span> Ubicación georreferenciada para el mapa.</p>
+            <p className="flex gap-sm"><span className="material-symbols-outlined text-[18px] text-amber-600">location_city</span> Distrito oficial de Lima Metropolitana.</p>
             <p className="flex gap-sm"><span className="material-symbols-outlined text-[18px] text-amber-600">verified</span> Confirmaciones ciudadanas elevan la prioridad.</p>
           </div>
         </Card>

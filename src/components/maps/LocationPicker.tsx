@@ -4,24 +4,21 @@ import { useState } from "react";
 import { Map, MapControls, MapMarker, MarkerContent, MarkerPopup } from "@/components/ui/map";
 import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
-
-const quickPoints = [
-  { label: "Pachacámac", lat: -12.2296, lng: -76.8614 },
-  { label: "Manchay", lat: -12.1129, lng: -76.8832 },
-  { label: "José Gálvez", lat: -12.2015, lng: -76.9348 }
-];
+import { limaDistrictQuickPoints } from "@/lib/limaDistricts";
 
 export function LocationPicker({
   latitud,
   longitud,
-  onChange
+  onChange,
+  onDistrictChange
 }: {
   latitud?: number;
   longitud?: number;
   onChange?: (latitud: number, longitud: number) => void;
+  onDistrictChange?: (district: string) => void;
 }) {
-  const [lat, setLat] = useState(latitud ?? -12.2296);
-  const [lng, setLng] = useState(longitud ?? -76.8614);
+  const [lat, setLat] = useState(latitud ?? -12.0614);
+  const [lng, setLng] = useState(longitud ?? -76.9331);
 
   function setLocation(nextLat: number, nextLng: number) {
     setLat(nextLat);
@@ -57,7 +54,7 @@ export function LocationPicker({
       </div>
 
       <div className="relative h-[300px] overflow-hidden rounded-lg border border-outline-variant bg-slate-100">
-        <Map center={[lng, lat]} zoom={13} theme="light">
+        <Map center={[lng, lat]} zoom={12} theme="light">
           <MapControls position="top-right" showZoom showCompass showLocate />
           <MapMarker
             longitude={lng}
@@ -78,13 +75,16 @@ export function LocationPicker({
             </MarkerPopup>
           </MapMarker>
         </Map>
-        <div className="absolute bottom-sm left-sm z-10 flex flex-wrap gap-xs rounded-lg border border-slate-200 bg-white/92 p-xs shadow-sm backdrop-blur">
-          {quickPoints.map((point) => (
+        <div className="absolute bottom-sm left-sm z-10 flex max-w-[calc(100%-16px)] flex-wrap gap-xs rounded-lg border border-slate-200 bg-white/92 p-xs shadow-sm backdrop-blur">
+          {limaDistrictQuickPoints.map((point) => (
             <button
               key={point.label}
               type="button"
               className="rounded-md px-sm py-xs text-xs font-semibold text-primary hover:bg-blue-50"
-              onClick={() => setLocation(point.lat, point.lng)}
+              onClick={() => {
+                setLocation(point.lat, point.lng);
+                onDistrictChange?.(point.label);
+              }}
             >
               {point.label}
             </button>
