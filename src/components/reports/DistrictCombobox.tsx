@@ -25,9 +25,6 @@ export function DistrictCombobox({
           <option key={district} value={district} />
         ))}
       </datalist>
-      <p className="mt-xs text-xs text-on-surface-variant">
-        Usa distritos oficiales de Lima Metropolitana. Ejemplo: Pachacámac, Ate, Comas.
-      </p>
     </div>
   );
 }
