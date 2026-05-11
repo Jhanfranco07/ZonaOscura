@@ -206,6 +206,46 @@ html[data-theme="dark"] .theme-tile-rose {
   color: #fecdd3 !important;
 }
 
+html[data-theme="dark"] .theme-badge-pending {
+  background: rgba(245, 158, 11, 0.16) !important;
+  color: #fde68a !important;
+}
+
+html[data-theme="dark"] .theme-badge-evaluation {
+  background: rgba(59, 130, 246, 0.16) !important;
+  color: #bfdbfe !important;
+}
+
+html[data-theme="dark"] .theme-badge-process {
+  background: rgba(6, 182, 212, 0.16) !important;
+  color: #a5f3fc !important;
+}
+
+html[data-theme="dark"] .theme-badge-done {
+  background: rgba(16, 185, 129, 0.16) !important;
+  color: #bbf7d0 !important;
+}
+
+html[data-theme="dark"] .theme-badge-rejected {
+  background: rgba(244, 63, 94, 0.16) !important;
+  color: #fecdd3 !important;
+}
+
+html[data-theme="dark"] .theme-us-report,
+html[data-theme="dark"] .theme-us-map,
+html[data-theme="dark"] .theme-us-history,
+html[data-theme="dark"] .theme-us-reporting {
+  background: rgba(251, 191, 36, 0.14) !important;
+  color: #fde68a !important;
+}
+
+html[data-theme="dark"] .theme-us-report-icon,
+html[data-theme="dark"] .theme-us-map-icon,
+html[data-theme="dark"] .theme-us-history-icon,
+html[data-theme="dark"] .theme-us-reporting-icon {
+  color: #fde68a !important;
+}
+
 html[data-theme="dark"] .theme-toggle {
   border-color: rgba(255, 255, 255, 0.1) !important;
   background: rgba(17, 24, 39, 0.9) !important;
@@ -328,6 +368,31 @@ html[data-theme="light"] .theme-badge-danger {
   background: #ffe4e6 !important;
   color: #be123c !important;
   box-shadow: none !important;
+}
+
+html[data-theme="light"] .theme-badge-pending {
+  background: #fef3c7 !important;
+  color: #92400e !important;
+}
+
+html[data-theme="light"] .theme-badge-evaluation {
+  background: #dbeafe !important;
+  color: #1d4ed8 !important;
+}
+
+html[data-theme="light"] .theme-badge-process {
+  background: #cffafe !important;
+  color: #0e7490 !important;
+}
+
+html[data-theme="light"] .theme-badge-done {
+  background: #dcfce7 !important;
+  color: #15803d !important;
+}
+
+html[data-theme="light"] .theme-badge-rejected {
+  background: #ffe4e6 !important;
+  color: #be123c !important;
 }
 
 .material-symbols-outlined {
