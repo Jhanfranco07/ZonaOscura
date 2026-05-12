@@ -4,11 +4,15 @@ import { ReportDetail } from "@/components/reports/ReportDetail";
 import { obtenerReportePorId } from "@/features/reportes/reporte.service";
 import { obtenerReporteDemoPorId } from "@/lib/demoData";
 
+export const dynamic = "force-dynamic";
+
 export default async function ReporteDetallePage({ params }: { params: { id: string } }) {
   let reporte = null;
   try {
     reporte = await obtenerReportePorId(params.id);
-  } catch {}
+  } catch (error) {
+    console.error("No se pudo obtener el detalle del reporte.", error);
+  }
 
   if (!reporte) {
     reporte = obtenerReporteDemoPorId(params.id) as any;
