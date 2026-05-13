@@ -40,13 +40,13 @@ export function Sidebar() {
   }, [pathname]);
 
   return (
-    <aside className="fixed left-0 top-0 z-20 hidden h-full w-[250px] flex-col gap-sm border-r border-slate-800/70 bg-slate-950 p-md text-white shadow-2xl lg:flex">
+    <aside className="theme-sidebar fixed left-0 top-0 z-20 hidden h-full w-[250px] flex-col gap-sm border-r border-slate-200/80 bg-white p-md text-slate-900 shadow-[10px_0_34px_rgba(15,23,42,0.08)] lg:flex">
       <div className="mb-lg px-xs">
         <div className="mb-sm flex h-11 w-11 items-center justify-center rounded-lg bg-amber-400 text-primary shadow-lg shadow-amber-500/25">
           <span className="material-symbols-outlined fill">lightbulb</span>
         </div>
-        <h1 className="font-titulo-seccion text-titulo-seccion font-bold text-white">ZonaOscura</h1>
-        <p className="mt-xs font-etiqueta text-etiqueta text-blue-100/80">Gestión de alumbrado</p>
+        <h1 className="theme-sidebar-title font-titulo-seccion text-titulo-seccion font-bold text-primary">ZonaOscura</h1>
+        <p className="theme-sidebar-muted mt-xs font-etiqueta text-etiqueta text-slate-500">Gestion de alumbrado</p>
       </div>
 
       <nav className="flex flex-1 flex-col gap-xs overflow-y-auto">
@@ -65,7 +65,7 @@ export function Sidebar() {
                 "flex items-center gap-md rounded-lg px-md py-sm font-texto-general text-texto-general transition-all",
                 active || pending
                   ? "scale-[0.98] bg-amber-400 font-semibold text-primary shadow-lg shadow-amber-500/20"
-                  : "text-blue-100/80 hover:bg-white/10 hover:text-white"
+                  : "theme-sidebar-link text-slate-600 hover:bg-blue-50 hover:text-primary"
               )}
             >
               <span className={cn("material-symbols-outlined", (active || pending) && "fill")}>
@@ -77,14 +77,14 @@ export function Sidebar() {
         })}
       </nav>
 
-      <div className="mt-auto rounded-lg border border-white/10 bg-white/[0.06] p-sm">
+      <div className="theme-sidebar-user mt-auto rounded-lg border border-slate-200 bg-slate-50 p-sm">
         <div className="flex items-center gap-sm">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full border border-white/20 bg-white/10">
-            <span className="material-symbols-outlined text-amber-300">person</span>
+          <div className="theme-sidebar-avatar flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full border border-amber-200 bg-amber-50">
+            <span className="material-symbols-outlined text-amber-600">person</span>
           </div>
           <div className="min-w-0">
-            <p className="truncate font-etiqueta text-etiqueta font-semibold text-white">Jhan Pérez</p>
-            <p className="truncate font-etiqueta text-[11px] text-blue-100/75">Usuario municipal</p>
+            <p className="theme-sidebar-title truncate font-etiqueta text-etiqueta font-semibold text-primary">Jhan Perez</p>
+            <p className="theme-sidebar-muted truncate font-etiqueta text-[11px] text-slate-500">Usuario municipal</p>
           </div>
         </div>
       </div>

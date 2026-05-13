@@ -25,7 +25,7 @@ export function ThemeToggle({ className, compact = false }: { className?: string
     <button
       type="button"
       aria-label={isDark ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
-      title={isDark ? "Modo claro" : "Modo oscuro"}
+      title="Cambiar tema"
       onClick={() => updateTheme(isDark ? "light" : "dark")}
       className={cn(
         "theme-toggle inline-flex items-center justify-center gap-xs rounded-2xl border border-slate-200 bg-white/90 text-primary shadow-[0_10px_28px_rgba(15,23,42,0.12)] transition hover:-translate-y-0.5 hover:bg-white",
@@ -35,7 +35,7 @@ export function ThemeToggle({ className, compact = false }: { className?: string
       )}
     >
       <span className="material-symbols-outlined text-[20px]">{isDark ? "light_mode" : "dark_mode"}</span>
-      {compact ? null : <span className="text-[12px] font-bold">{isDark ? "Claro" : "Oscuro"}</span>}
+      {compact ? null : <span className="text-[12px] font-bold">Tema</span>}
     </button>
   );
 }
