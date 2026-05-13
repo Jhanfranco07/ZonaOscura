@@ -75,7 +75,7 @@ export function ReportForm() {
 
       <aside className="lg:col-span-4">
         <Card className="sticky top-[100px] overflow-hidden p-lg">
-          <div className="rounded-lg bg-slate-950 p-md text-white">
+          <div className="rounded-lg bg-blue-700 p-md text-white">
             <p className="font-etiqueta text-etiqueta font-semibold uppercase text-amber-200">Vista previa</p>
             <h2 className="mt-xs font-titulo-seccion text-[20px] font-semibold">Reporte ciudadano</h2>
             <p className="mt-xs text-sm text-blue-100">Estado inicial: Pendiente de revisión municipal.</p>

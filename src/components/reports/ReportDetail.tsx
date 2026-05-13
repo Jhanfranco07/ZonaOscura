@@ -25,7 +25,7 @@ export function ReportDetail({ reporte }: { reporte: ReporteDetalle }) {
     <div className="grid grid-cols-1 gap-gutter lg:grid-cols-12">
       <section className="flex flex-col gap-lg lg:col-span-7">
         <Card className="overflow-hidden">
-          <div className="bg-slate-950 p-lg text-white">
+          <div className="bg-blue-700 p-lg text-white">
             <div className="flex flex-wrap items-start justify-between gap-md">
               <div>
                 <p className="font-etiqueta text-etiqueta font-semibold uppercase text-amber-200">{reporte.codigo}</p>

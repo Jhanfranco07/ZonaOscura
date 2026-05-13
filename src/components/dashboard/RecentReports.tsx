@@ -28,7 +28,7 @@ export function RecentReports({ reportes }: { reportes: ReporteItem[] }) {
           Ver todos
         </Link>
       </div>
-      <Card className="theme-surface overflow-hidden rounded-2xl max-lg:border-slate-700/70 max-lg:bg-[#111827]/82 max-lg:shadow-[0_16px_38px_rgba(2,6,23,0.28)] max-lg:ring-white/[0.04]">
+      <Card className="theme-surface overflow-hidden rounded-2xl max-lg:border-blue-300/20 max-lg:bg-[#183f79]/82 max-lg:shadow-[0_16px_38px_rgba(8,28,58,0.28)] max-lg:ring-white/[0.04]">
         {reportes.length === 0 ? (
           <p className="p-md text-on-surface-variant max-lg:text-slate-400">No se encontraron reportes con los filtros seleccionados.</p>
         ) : (

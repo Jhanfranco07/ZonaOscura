@@ -27,7 +27,7 @@ export function MobileNav() {
   }, [pathname]);
 
   return (
-    <nav className="theme-mobile-nav fixed bottom-0 left-0 right-0 z-30 grid grid-cols-5 border-t border-white/10 bg-[#0A0F1A]/90 px-xs pb-2 pt-xs shadow-[0_-14px_34px_rgba(2,6,23,0.45)] backdrop-blur-xl lg:hidden">
+    <nav className="theme-mobile-nav fixed bottom-0 left-0 right-0 z-30 grid grid-cols-5 border-t border-white/10 bg-[#0f2f63]/92 px-xs pb-2 pt-xs shadow-[0_-14px_34px_rgba(8,28,58,0.42)] backdrop-blur-xl lg:hidden">
       {items.map((item) => {
         const active = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
         const pending = pendingHref === item.href;

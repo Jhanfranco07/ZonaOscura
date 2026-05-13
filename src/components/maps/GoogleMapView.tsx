@@ -26,13 +26,13 @@ export function GoogleMapView({ reportes }: { reportes: ReporteZonaOscura[] }) {
               </div>
             </MarkerContent>
             <MarkerTooltip>
-              <div className="rounded-lg bg-slate-950 px-sm py-xs text-xs font-semibold text-white shadow-lg">
+              <div className="rounded-lg bg-blue-700 px-sm py-xs text-xs font-semibold text-white shadow-lg">
                 {reporte.direccion}
               </div>
             </MarkerTooltip>
             <MarkerPopup className="w-[260px] p-0">
               <div className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-xl">
-                <div className="bg-slate-950 p-sm text-white">
+                <div className="bg-blue-700 p-sm text-white">
                   <p className="text-xs font-bold text-amber-200">{reporte.codigo}</p>
                   <h3 className="mt-xs line-clamp-2 text-sm font-semibold">{reporte.direccion}</h3>
                 </div>

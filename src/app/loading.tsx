@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/Card";
 export default function Loading() {
   return (
     <div className="flex flex-col gap-xl">
-      <section className="rounded-2xl border border-white/70 bg-gradient-to-r from-primary via-slate-900 to-safety-blue p-lg text-white shadow-[0_18px_45px_rgba(15,23,42,0.18)] lg:p-xl">
+      <section className="rounded-2xl border border-white/70 bg-gradient-to-r from-blue-700 via-blue-800 to-safety-blue p-lg text-white shadow-[0_18px_45px_rgba(37,99,235,0.18)] lg:p-xl">
         <div className="h-5 w-56 animate-pulse rounded-full bg-amber-300/30" />
         <div className="mt-md h-9 w-full max-w-xl animate-pulse rounded-lg bg-white/20" />
         <div className="mt-sm h-5 w-full max-w-2xl animate-pulse rounded-lg bg-blue-100/20" />

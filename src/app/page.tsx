@@ -20,7 +20,7 @@ export default async function HomePage() {
 
   return (
     <div className="flex flex-col gap-lg lg:gap-xl">
-      <section className="theme-hero overflow-hidden rounded-2xl border border-slate-900/10 bg-slate-950 text-white shadow-[0_24px_60px_rgba(15,23,42,0.20)] max-lg:rounded-[22px]">
+      <section className="theme-hero overflow-hidden rounded-2xl border border-blue-200/70 bg-blue-700 text-white shadow-[0_24px_60px_rgba(37,99,235,0.18)] max-lg:rounded-[22px]">
         <div className="grid min-h-[300px] grid-cols-1 lg:grid-cols-[1.25fr_0.75fr]">
           <div className="relative p-lg max-lg:p-[22px] lg:p-xl">
             <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(37,99,235,0.18),transparent_48%),radial-gradient(circle_at_16%_18%,rgba(251,191,36,0.18),transparent_22rem)]" />
@@ -41,7 +41,7 @@ export default async function HomePage() {
               <HomePill icon="assessment" label="Informe municipal" />
             </div>
           </div>
-          <div className="theme-surface relative border-t border-white/10 bg-slate-900/80 p-lg max-lg:p-[22px] lg:border-l lg:border-t-0 lg:p-xl">
+          <div className="theme-surface relative border-t border-white/10 bg-blue-800/85 p-lg max-lg:p-[22px] lg:border-l lg:border-t-0 lg:p-xl">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(251,191,36,0.16),transparent_18rem)]" />
             <div className="relative flex h-full min-h-[220px] flex-col justify-between max-lg:min-h-[190px]">
               <div className="flex items-center justify-between">

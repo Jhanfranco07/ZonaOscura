@@ -30,7 +30,7 @@ export function ThemeToggle({ className, compact = false }: { className?: string
       className={cn(
         "theme-toggle inline-flex items-center justify-center gap-xs rounded-2xl border border-slate-200 bg-white/90 text-primary shadow-[0_10px_28px_rgba(15,23,42,0.12)] transition hover:-translate-y-0.5 hover:bg-white",
         compact ? "h-11 w-11" : "h-10 px-sm",
-        "max-lg:border-white/10 max-lg:bg-[#111827]/90 max-lg:text-amber-300 max-lg:backdrop-blur-xl",
+        "max-lg:border-white/10 max-lg:bg-[#0f2f63]/92 max-lg:text-amber-300 max-lg:backdrop-blur-xl",
         className
       )}
     >

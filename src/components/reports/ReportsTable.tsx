@@ -7,7 +7,7 @@ import { etiquetasTipoProblema, formatearFecha } from "@/lib/utils";
 
 export function ReportsTable({ reportes }: { reportes: ReporteZonaOscura[] }) {
   return (
-    <Card className="theme-surface overflow-hidden rounded-2xl max-lg:border-slate-700/70 max-lg:bg-[#111827]/82">
+    <Card className="theme-surface overflow-hidden rounded-2xl max-lg:border-blue-300/20 max-lg:bg-[#183f79]/82">
       <div className="hidden overflow-x-auto lg:block">
         <Table>
           <thead className="border-b border-outline-variant bg-slate-50">

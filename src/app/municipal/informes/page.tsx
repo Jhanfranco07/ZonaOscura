@@ -22,8 +22,8 @@ export default async function InformesPage() {
       </section>
       <Card className="grid grid-cols-1 gap-md p-md lg:grid-cols-4">
         <Select><option>Todos los distritos</option><option>Pachacámac</option></Select>
-        <input type="date" className="h-10 rounded-lg border border-outline-variant bg-surface-container-lowest px-md" />
-        <input type="date" className="h-10 rounded-lg border border-outline-variant bg-surface-container-lowest px-md" />
+        <input type="date" className="theme-control h-10 rounded-lg border border-outline-variant bg-surface-container-lowest px-md" />
+        <input type="date" className="theme-control h-10 rounded-lg border border-outline-variant bg-surface-container-lowest px-md" />
         <Select><option>Todos los estados</option><option>Pendiente</option><option>Atendido</option></Select>
       </Card>
       <div className="grid grid-cols-1 gap-gutter lg:grid-cols-12">

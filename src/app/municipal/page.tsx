@@ -26,7 +26,7 @@ export default async function MunicipalPage() {
 
   return (
     <div className="flex flex-col gap-xl max-lg:gap-lg">
-      <section className="theme-hero overflow-hidden rounded-2xl border border-slate-800 bg-[linear-gradient(135deg,#111827_0%,#0f172a_52%,#101827_100%)] p-lg text-white shadow-[0_18px_48px_rgba(15,23,42,0.18)] max-lg:p-md">
+      <section className="theme-hero overflow-hidden rounded-2xl border border-blue-300/40 bg-[linear-gradient(135deg,#1e4f91_0%,#1d4ed8_52%,#1e40af_100%)] p-lg text-white shadow-[0_18px_48px_rgba(37,99,235,0.18)] max-lg:p-md">
         <p className="theme-accent font-etiqueta text-etiqueta font-semibold uppercase text-amber-200">Gestión municipal</p>
         <h1 className="theme-text-primary mt-xs font-titulo-principal text-titulo-principal text-white max-lg:text-[30px]">Panel municipal</h1>
         <p className="theme-text-muted mt-xs max-w-3xl text-blue-100 max-lg:text-[14px] max-lg:leading-6">
@@ -91,7 +91,7 @@ function MunicipalInsightBar({ data }: { data: any }) {
 
 function MiniInsight({ label, value, icon, accent = false }: { label: string; value: number | string; icon: string; accent?: boolean }) {
   return (
-    <div className="theme-surface rounded-xl bg-[#111827]/70 p-sm">
+    <div className="theme-surface rounded-xl bg-blue-800/70 p-sm">
       <span className={accent ? "material-symbols-outlined text-[18px] text-orange-400" : "material-symbols-outlined text-[18px] text-blue-500"}>
         {icon}
       </span>

@@ -47,9 +47,9 @@ export function KpiCard({ title, value, description, icon, tone = "blue", critic
       className={cn(
         "group relative min-h-[132px] overflow-hidden rounded-2xl border p-md shadow-[0_18px_42px_rgba(15,23,42,0.09)] transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_22px_52px_rgba(15,23,42,0.13)] max-lg:min-h-[112px] max-lg:p-sm",
         critical
-          ? "theme-critical border-amber-300/45 bg-[linear-gradient(135deg,#101827_0%,#0f172a_52%,#101827_100%)] text-white ring-1 ring-white/[0.05]"
+          ? "theme-critical border-amber-300/45 bg-[linear-gradient(135deg,#1e4f91_0%,#1d4ed8_52%,#1e40af_100%)] text-white ring-1 ring-white/[0.08]"
           : cn(
-              "theme-surface border-white/90 bg-gradient-to-br ring-1 ring-slate-200/70 max-lg:border-slate-800/90 max-lg:from-[#121A29] max-lg:via-[#0F1724] max-lg:to-[#0A0F1A] max-lg:ring-white/[0.05]",
+              "theme-surface border-white/90 bg-gradient-to-br ring-1 ring-slate-200/70 max-lg:border-blue-300/20 max-lg:from-[#183f79] max-lg:via-[#173463] max-lg:to-[#132a52] max-lg:ring-white/[0.06]",
               styles.card
             )
       )}

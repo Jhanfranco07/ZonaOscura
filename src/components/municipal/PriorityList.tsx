@@ -13,7 +13,7 @@ export function PriorityList({ reportes }: { reportes: ReportePrioridad[] }) {
         <Card key={reporte.id} className="relative overflow-hidden p-md transition-colors hover:bg-surface-container-low">
           {reporte.prioridad === "ALTA" ? <div className="absolute bottom-0 left-0 top-0 w-1 bg-safety-rose" /> : null}
           <div className="flex flex-col gap-md md:flex-row md:items-center">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-slate-950 text-amber-300">
+            <div className="theme-rank-tile flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-blue-700 text-amber-200 shadow-[0_8px_20px_rgba(37,99,235,0.18)]">
               <span className="font-bold">{String(index + 1).padStart(2, "0")}</span>
             </div>
             <div className="flex-1">
@@ -26,7 +26,7 @@ export function PriorityList({ reportes }: { reportes: ReportePrioridad[] }) {
                 {etiquetasTipoProblema[reporte.tipoProblema]} · {reporte._count.confirmaciones} confirmaciones · {formatearFecha(reporte.fechaCreacion)}
               </p>
             </div>
-            <Link href={`/reportes/${reporte.id}`} className="rounded-lg border border-outline-variant bg-white px-md py-sm text-center font-semibold text-primary hover:bg-surface-container-lowest">
+            <Link href={`/reportes/${reporte.id}`} className="theme-detail-link rounded-lg border border-outline-variant bg-white px-md py-sm text-center font-semibold text-primary hover:bg-surface-container-lowest">
               Ver detalle
             </Link>
           </div>

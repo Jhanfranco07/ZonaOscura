@@ -4,13 +4,13 @@ import { Button } from "@/components/ui/Button";
 export function InformePreview() {
   return (
     <Card className="overflow-hidden">
-      <div className="bg-slate-950 p-lg text-white">
-        <p className="font-etiqueta text-etiqueta font-semibold uppercase text-amber-200">Vista previa</p>
+      <div className="theme-report-header bg-blue-700 p-lg text-white">
+        <p className="font-etiqueta text-etiqueta font-semibold uppercase text-amber-100">Vista previa</p>
         <h2 className="mt-xs font-subtitulo text-subtitulo text-white">Informe operativo</h2>
         <p className="mt-xs text-sm text-blue-100">Resumen priorizado para mantenimiento e instalación de luminarias.</p>
       </div>
       <div className="p-lg">
-        <div className="rounded-lg border border-outline-variant bg-white p-md">
+        <div className="theme-report-paper rounded-lg border border-outline-variant bg-white p-md">
           <div className="border-b border-outline-variant pb-sm">
             <p className="text-xs font-bold uppercase text-safety-blue">Municipalidad · Servicios públicos</p>
             <h3 className="mt-xs font-subtitulo text-[18px] font-semibold text-primary">Informe operativo de zonas oscuras</h3>
@@ -21,7 +21,7 @@ export function InformePreview() {
             <PreviewMetric label="Críticos" value="10" />
             <PreviewMetric label="Pendientes" value="46" />
           </div>
-          <div className="mt-md rounded-lg bg-amber-50 p-md text-sm text-amber-900">
+          <div className="theme-report-note mt-md rounded-lg bg-amber-50 p-md text-sm text-amber-900">
             Recomendación: iniciar intervención por zonas con riesgo alto, mayor número de confirmaciones y reportes recientes.
           </div>
         </div>
@@ -46,7 +46,7 @@ export function InformePreview() {
 
 function PreviewMetric({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-lg bg-surface-container-low p-sm">
+    <div className="theme-report-metric rounded-lg bg-surface-container-low p-sm">
       <p className="text-xs text-on-surface-variant">{label}</p>
       <p className="font-semibold text-primary">{value}</p>
     </div>
