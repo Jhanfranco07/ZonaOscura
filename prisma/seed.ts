@@ -49,6 +49,8 @@ async function main() {
     create: { nombres: "Admin", apellidos: "ZonaOscura", correo: "admin@zonaoscura.pe", claveHash, rol: RolUsuario.ADMIN }
   });
 
+  await prisma.reporteZonaOscura.deleteMany();
+
   for (const item of reportesDemoSeed) {
     const reporte = await prisma.reporteZonaOscura.upsert({
       where: { codigo: item.codigo },
