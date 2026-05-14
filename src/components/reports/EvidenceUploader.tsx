@@ -12,20 +12,27 @@ export function EvidenceUploader({ onUploaded }: { onUploaded?: (url: string) =>
     setMensaje("Subiendo imagen...");
     const formData = new FormData();
     formData.append("file", file);
-    const response = await fetch("/api/upload", { method: "POST", body: formData });
-    const json = await response.json();
-    if (!response.ok) {
-      setMensaje(json.error ?? "No se pudo subir la imagen.");
+    try {
+      const response = await fetch("/api/upload", { method: "POST", body: formData });
+      const json = await response.json().catch(() => null);
+      if (!response.ok) {
+        onUploaded?.("");
+        setMensaje(`${json?.error ?? "No se pudo subir la imagen."} Puedes enviar el reporte sin foto.`);
+        return;
+      }
+      setMensaje("Imagen cargada correctamente.");
+      onUploaded?.(json.urlImagen);
+    } catch {
+      onUploaded?.("");
+      setMensaje("No se pudo subir la imagen por un problema de conexión. Puedes enviar el reporte sin foto.");
       return;
     }
-    setMensaje("Imagen cargada correctamente.");
-    onUploaded?.(json.urlImagen);
   }
 
   return (
     <div className="space-y-sm">
       <label className="flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-outline-variant bg-surface-container-lowest p-xl text-center transition-colors hover:bg-surface-container-low">
-        <input className="sr-only" type="file" accept="image/jpeg,image/png,image/webp" onChange={(e) => handleFile(e.target.files?.[0])} />
+        <input className="sr-only" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif" capture="environment" onChange={(e) => handleFile(e.target.files?.[0])} />
         {preview ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img src={preview} alt="Vista previa" className="mb-sm aspect-video w-full rounded-lg object-cover grayscale" />

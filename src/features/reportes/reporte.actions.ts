@@ -23,16 +23,20 @@ export async function crearReporteAction(_: unknown, formData: FormData) {
     return { ok: false, mensaje: parsed.error.errors[0]?.message ?? "Datos inválidos." };
   }
 
-  const ciudadanoId = await obtenerUsuarioActualId();
+  let reporteId = "";
   try {
+    const ciudadanoId = await obtenerUsuarioActualId();
     const reporte = await crearReporte(parsed.data, ciudadanoId);
+    reporteId = reporte.id;
     revalidatePath("/");
     revalidatePath("/mapa");
     revalidatePath("/reportes");
-    redirect(`/reportes/${reporte.id}`);
-  } catch {
+  } catch (error) {
+    console.error("No se pudo registrar el reporte.", error);
     return { ok: false, mensaje: "No se pudo registrar el reporte. Revisa la conexión a la base de datos." };
   }
+
+  redirect(`/reportes/${reporteId}`);
 }
 
 export async function confirmarReporteAction(reporteId: string) {

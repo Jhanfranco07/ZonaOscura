@@ -4,7 +4,10 @@ import { ResponsiveShell } from "@/components/layout/ResponsiveShell";
 
 export const metadata: Metadata = {
   title: "ZonaOscura",
-  description: "Reporte colaborativo de zonas con iluminación pública deficiente."
+  description: "Reporte colaborativo de zonas con iluminación pública deficiente.",
+  icons: {
+    icon: "/icon.svg"
+  }
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
