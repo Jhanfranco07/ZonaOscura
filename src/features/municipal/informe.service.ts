@@ -5,7 +5,11 @@ import { etiquetasEstadoReporte, etiquetasPrioridad, etiquetasTipoProblema, form
 
 type ReporteInforme = Awaited<ReturnType<typeof obtenerPrioridadesMunicipales>>[number];
 
-export async function generarInformeOperativo() {
+type InformeOpciones = {
+  incluirImagenes?: boolean;
+};
+
+export async function generarInformeOperativo(opciones: InformeOpciones = {}) {
   let reportes: ReporteInforme[] = [];
   let origen = "Base de datos Supabase";
 
@@ -16,10 +20,10 @@ export async function generarInformeOperativo() {
     reportes = reportesDemo.map((reporte) => ({ ...reporte, _count: { confirmaciones: reporte.prioridad === "ALTA" ? 8 : 3 } })) as ReporteInforme[];
   }
 
-  return crearPdfInforme(reportes, origen);
+  return crearPdfInforme(reportes, origen, opciones);
 }
 
-function crearPdfInforme(reportes: ReporteInforme[], origen: string) {
+async function crearPdfInforme(reportes: ReporteInforme[], origen: string, opciones: InformeOpciones) {
   const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
   const pageWidth = doc.internal.pageSize.getWidth();
   const margin = 14;
@@ -118,7 +122,15 @@ function crearPdfInforme(reportes: ReporteInforme[], origen: string) {
     contentWidth
   );
 
+  if (opciones.incluirImagenes) {
+    y = await drawEvidenceSection(doc, reportes, margin, y + 10, contentWidth);
+  }
+
   y += 8;
+  if (y > 250) {
+    doc.addPage();
+    y = 18;
+  }
   doc.setFillColor(254, 243, 199);
   doc.roundedRect(margin, y, contentWidth, 22, 2, 2, "F");
   doc.setTextColor(120, 53, 15);
@@ -220,6 +232,100 @@ function addFooter(doc: jsPDF) {
     doc.setTextColor(100, 116, 139);
     doc.text(`ZonaOscura | Informe operativo | Página ${page} de ${pages}`, 14, 290);
   }
+}
+
+async function drawEvidenceSection(doc: jsPDF, reportes: ReporteInforme[], x: number, y: number, width: number) {
+  const reportesConImagen = reportes.filter((reporte) => reporte.imagenes?.[0]?.urlImagen).slice(0, 6);
+
+  if (y > 210) {
+    doc.addPage();
+    y = 18;
+  }
+
+  doc.setTextColor(16, 33, 63);
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(13);
+  doc.text("5. Evidencia fotográfica", x, y);
+  y += 7;
+
+  if (!reportesConImagen.length) {
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(10);
+    doc.setTextColor(82, 96, 113);
+    doc.text("No hay imágenes disponibles para los reportes incluidos en este informe.", x, y);
+    return y + 6;
+  }
+
+  const cardWidth = (width - 8) / 2;
+  const imageHeight = 34;
+  const cardHeight = 48;
+
+  for (let index = 0; index < reportesConImagen.length; index += 1) {
+    const reporte = reportesConImagen[index];
+    const col = index % 2;
+    const left = x + col * (cardWidth + 8);
+
+    if (col === 0 && index > 0) y += cardHeight + 8;
+    if (y + cardHeight > 275) {
+      doc.addPage();
+      y = 18;
+    }
+
+    doc.setFillColor(248, 250, 252);
+    doc.roundedRect(left, y, cardWidth, cardHeight, 2, 2, "F");
+    doc.setDrawColor(226, 232, 240);
+    doc.roundedRect(left, y, cardWidth, cardHeight, 2, 2, "S");
+
+    const image = await fetchImageDataUrl(reporte.imagenes[0].urlImagen);
+    if (image) {
+      doc.addImage(image.dataUrl, image.format, left + 2, y + 2, cardWidth - 4, imageHeight);
+    } else {
+      doc.setFillColor(226, 232, 240);
+      doc.rect(left + 2, y + 2, cardWidth - 4, imageHeight, "F");
+      doc.setTextColor(82, 96, 113);
+      doc.setFontSize(8);
+      doc.text("Imagen no disponible", left + 4, y + 20);
+    }
+
+    doc.setTextColor(16, 33, 63);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(8);
+    doc.text(`${reporte.codigo} · ${truncate(reporte.distrito, 18)}`, left + 3, y + imageHeight + 8);
+    doc.setFont("helvetica", "normal");
+    doc.setTextColor(82, 96, 113);
+    doc.text(truncate(reporte.direccion, 36), left + 3, y + imageHeight + 13);
+  }
+
+  return y + cardHeight;
+}
+
+async function fetchImageDataUrl(url: string) {
+  try {
+    const response = await fetch(toPdfImageUrl(url), { cache: "no-store" });
+    if (!response.ok) return null;
+
+    const contentType = response.headers.get("content-type") ?? "";
+    const format = getImageFormat(contentType);
+    if (!format) return null;
+
+    const arrayBuffer = await response.arrayBuffer();
+    const base64 = Buffer.from(arrayBuffer).toString("base64");
+    return { dataUrl: `data:${contentType};base64,${base64}`, format };
+  } catch {
+    return null;
+  }
+}
+
+function toPdfImageUrl(url: string) {
+  if (!url.includes("res.cloudinary.com") || !url.includes("/upload/")) return url;
+  return url.replace("/upload/", "/upload/f_jpg,q_auto,w_900/");
+}
+
+function getImageFormat(contentType: string): "JPEG" | "PNG" | "WEBP" | null {
+  if (contentType.includes("jpeg") || contentType.includes("jpg")) return "JPEG";
+  if (contentType.includes("png")) return "PNG";
+  if (contentType.includes("webp")) return "WEBP";
+  return null;
 }
 
 function truncate(value: string, max: number) {

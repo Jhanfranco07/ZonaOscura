@@ -2,9 +2,10 @@ import { generarInformeOperativo } from "@/lib/pdf";
 
 export const dynamic = "force-dynamic";
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
-    const buffer = await generarInformeOperativo();
+    const { searchParams } = new URL(request.url);
+    const buffer = await generarInformeOperativo({ incluirImagenes: searchParams.get("imagenes") === "1" });
     return new Response(buffer, {
       headers: {
         "Content-Type": "application/pdf",

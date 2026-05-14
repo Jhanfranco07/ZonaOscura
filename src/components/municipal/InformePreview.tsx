@@ -1,7 +1,13 @@
+"use client";
+
+import { useState } from "react";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 
 export function InformePreview() {
+  const [incluirImagenes, setIncluirImagenes] = useState(false);
+  const pdfHref = incluirImagenes ? "/api/informes?imagenes=1" : "/api/informes";
+
   return (
     <Card className="overflow-hidden">
       <div className="theme-report-header bg-blue-700 p-lg text-white">
@@ -31,9 +37,12 @@ export function InformePreview() {
           <label className="flex gap-sm"><input type="checkbox" defaultChecked /> Tabla de prioridades</label>
           <label className="flex gap-sm"><input type="checkbox" defaultChecked /> Reportes pendientes y atendidos</label>
           <label className="flex gap-sm"><input type="checkbox" defaultChecked /> Recomendación operativa</label>
-          <label className="flex gap-sm"><input type="checkbox" /> Evidencia fotográfica</label>
+          <label className="flex gap-sm">
+            <input type="checkbox" checked={incluirImagenes} onChange={(event) => setIncluirImagenes(event.target.checked)} />
+            Evidencia fotográfica
+          </label>
         </div>
-        <a href="/api/informes" target="_blank" className="mt-md block">
+        <a href={pdfHref} target="_blank" className="mt-md block">
           <Button className="w-full" type="button">
             <span className="material-symbols-outlined">download</span>
             Descargar PDF
