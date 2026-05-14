@@ -45,7 +45,7 @@ export default async function HomePage() {
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(251,191,36,0.16),transparent_18rem)]" />
             <div className="relative flex h-full min-h-[220px] flex-col justify-between max-lg:min-h-[190px]">
               <div className="flex items-center justify-between">
-                <span className="theme-text-muted rounded-full bg-white/10 px-md py-xs text-sm font-semibold text-blue-100 max-lg:bg-blue-100/10 max-lg:text-[13px]">Semana 08</span>
+                <span className="theme-text-muted rounded-full bg-white/10 px-md py-xs text-sm font-semibold text-blue-100 max-lg:bg-blue-100/10 max-lg:text-[13px]">Sistema activo</span>
                 <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-400 text-primary shadow-lg shadow-amber-500/25 max-lg:h-[52px] max-lg:w-[52px]">
                   <span className="material-symbols-outlined fill text-[34px]">lightbulb</span>
                 </div>

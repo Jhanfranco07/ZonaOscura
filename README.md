@@ -1,6 +1,6 @@
 # ZonaOscura
 
-Prototipo responsive para reportar, visualizar y gestionar zonas con deficiente iluminación pública. El caso corresponde a la Semana 08 del curso Diseño e Implementación en Ambientes Emergentes.
+Prototipo responsive para reportar, visualizar y gestionar zonas con deficiente iluminación pública.
 
 ## Objetivo
 
